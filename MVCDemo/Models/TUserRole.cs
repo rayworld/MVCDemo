@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MVCDemo.Models
 {
-    public class TUserRoles
+    public class TUserRole
     {
         public int ID { get; set; }
 
@@ -13,9 +13,9 @@ namespace MVCDemo.Models
 
         public int RoleID { get; set; }
 
-        public virtual TRoles SysRole { get; set; }
+        public virtual TRole TRole { get; set; }
 
-        public virtual TUsers SysUser { get; set; }
+        public virtual TUser TUser { get; set; }
 
 
 

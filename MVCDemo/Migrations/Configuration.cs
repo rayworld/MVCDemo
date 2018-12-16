@@ -18,6 +18,23 @@ namespace MVCDemo.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+
+            var sysuser = new List<TUser>
+            {
+                new TUser{Name="admin1",Password="admin",EMail="casd@sina.com"},
+                new TUser{Name="admin2",Password="admin",EMail="casd@sina.com"},
+                new TUser{Name="admin3",Password="admin",EMail="casd@sina.com"}
+            };
+            sysuser.ForEach(u => context.TUsers.Add(u));
+
+            var sysrole = new List<TRole>
+            {
+                new TRole{Name="admin",Desc="admin"},
+                new TRole{Name="user",Desc="User"}
+            };
+            sysrole.ForEach(r => context.TRoles.Add(r));
+
+            context.SaveChanges();
         }
     }
 }

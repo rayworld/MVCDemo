@@ -22,11 +22,11 @@ namespace MVCDemo.DAL
 
         //public DbSet<StudentCousers> StuCousers { get; set; }
         
-        public DbSet<TUsers> TUsers { get; set; }
+        public DbSet<TUser> TUsers { get; set; }
 
-        public DbSet<TRoles> TRoles { get; set; }
+        public DbSet<TRole> TRoles { get; set; }
 
-        public DbSet<TUserRoles> TUserRoles { get; set; }
+        public DbSet<TUserRole> TUserRoles { get; set; }
         /// <summary>
         /// 指定单数形式的表名
         /// 默认情况下会生成复数形式的表，如Users

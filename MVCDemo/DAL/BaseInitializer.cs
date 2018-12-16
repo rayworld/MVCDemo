@@ -8,22 +8,7 @@ namespace MVCDemo.DAL
     {
         protected override void Seed(BaseContext context)
         {
-            var sysuser = new List<TUsers>
-            {
-                new TUsers{Name="admin1",Password="admin",EMail="casd@sina.com"},
-                new TUsers{Name="admin2",Password="admin",EMail="casd@sina.com"},
-                new TUsers{Name="admin3",Password="admin",EMail="casd@sina.com"}
-            };
-            sysuser.ForEach(u => context.TUsers.Add(u));
 
-            var sysrole = new List<TRoles>
-            {
-                new TRoles{Name="admin",Desc="admin"},
-                new TRoles{Name="user",Desc="User"}
-            };
-            sysrole.ForEach(r => context.TRoles.Add(r));
-
-            context.SaveChanges();
             //var student = new List<Students>
             //{
             //new Students{Name="小明",Password="123456",Sex="男", Age= 50},

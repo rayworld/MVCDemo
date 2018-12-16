@@ -6,19 +6,17 @@ using System.Web;
 
 namespace MVCDemo.Models
 {
-    public class TRoles
+    public class TRole
     {
         public int ID { get; set; }
 
         [Display(Name="角色名称")]
         [Required]
-        [MaxLength=10]
         public string Name { get; set; }
 
         [Display(Name = "角色描述")]
-        [MaxLength=50]
         public string Desc { get; set; }
 
-        public virtual ICollection<TUserRoles> SysUserRole { get; set; }
+        public virtual ICollection<TUserRole> TUserRole { get; set; }
     }
 }
