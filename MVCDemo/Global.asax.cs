@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MVCDemo.DAL;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,6 +18,10 @@ namespace MVCDemo
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //添加建表
+            Database.SetInitializer<BaseContext>(new BaseInitializer());
+
         }
     }
 }
