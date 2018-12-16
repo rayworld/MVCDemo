@@ -21,9 +21,9 @@ namespace MVCDemo.Migrations
 
             var sysuser = new List<TUser>
             {
-                new TUser{Name="admin1",Password="admin",EMail="casd@sina.com"},
-                new TUser{Name="admin2",Password="admin",EMail="casd@sina.com"},
-                new TUser{Name="admin3",Password="admin",EMail="casd@sina.com"}
+                new TUser{Name="admin1",Password="1",EMail="casp@sina.com"},
+                new TUser{Name="admin2",Password="2",EMail="casp@sina.com"},
+                new TUser{Name="admin3",Password="3",EMail="casp@sina.com"}
             };
             sysuser.ForEach(u => context.TUsers.Add(u));
 
