@@ -1,4 +1,4 @@
-﻿using MVCDemo.Models;
+﻿using MVCDemo.Areas.Admin.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 

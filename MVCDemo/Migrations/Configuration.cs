@@ -1,6 +1,6 @@
 namespace MVCDemo.Migrations
 {
-    using MVCDemo.Models;
+    using MVCDemo.Areas.Admin.Models;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
 

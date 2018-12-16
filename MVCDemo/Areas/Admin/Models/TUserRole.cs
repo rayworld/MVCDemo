@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MVCDemo.Models
+﻿namespace MVCDemo.Areas.Admin.Models
 {
     public class TUserRole
     {

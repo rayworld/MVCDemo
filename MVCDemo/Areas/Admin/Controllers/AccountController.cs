@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 
-namespace MVCDemo.Controllers
+namespace MVCDemo.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
