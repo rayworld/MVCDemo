@@ -16,6 +16,10 @@ namespace MVCDemo.Models
         [Required]
         public string Password { get; set; }
 
+        [Display(Name = "邮箱")]
+        [Required]
+        public string EMail { get; set; }
+
         public virtual ICollection<TUserRoles> SysUserRole { get; set; }
     }
 }

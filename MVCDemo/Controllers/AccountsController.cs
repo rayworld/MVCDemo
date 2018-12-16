@@ -15,5 +15,27 @@ namespace MVCDemo.Controllers
         {
             return View(db.TUsers.ToList());
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(FormCollection fc)
+        {
+            string email = fc["inputEmail3"].ToString();
+            string password = fc["inputPassword3"].ToString();
+            var user = db.TUsers.Where(u => u.EMail == email & u.Password == password);
+            if (user.Count() > 0)
+            {
+                RedirectToAction("Role", "Index");
+            }
+            else
+            {
+                RedirectToAction("Acounts", "Login");
+            }
+            return View();
+        }
     }
 }

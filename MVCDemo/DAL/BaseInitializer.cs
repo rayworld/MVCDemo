@@ -10,9 +10,9 @@ namespace MVCDemo.DAL
         {
             var sysuser = new List<TUsers>
             {
-                new TUsers{Name="ssdfsdf",Password="32123"},
-                new TUsers{Name="sdfw",Password="1234"},
-                new TUsers{Name="eeff",Password="123"}
+                new TUsers{Name="admin1",Password="admin",EMail="casd@sina.com"},
+                new TUsers{Name="admin2",Password="admin",EMail="casd@sina.com"},
+                new TUsers{Name="admin3",Password="admin",EMail="casd@sina.com"}
             };
             sysuser.ForEach(u => context.TUsers.Add(u));
 
