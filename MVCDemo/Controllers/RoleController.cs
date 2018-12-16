@@ -10,7 +10,7 @@ namespace MVCDemo.Controllers
     public class RoleController : Controller
     {
 
-        private BaseContext db = mew BaseContext();
+        private BaseContext db = new BaseContext();
         // GET: Role
         public ActionResult Index()
         {
