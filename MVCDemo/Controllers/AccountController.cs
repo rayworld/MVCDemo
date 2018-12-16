@@ -27,7 +27,9 @@ namespace MVCDemo.Controllers
             //ViewBag.State = user11.Count();
             if (user11.Count() > 0)
             {
-                return View("Index",db.TUser.ToList());
+                //return View("Index",db.TUser.ToList());
+                return RedirectToAction("Index", "Account");
+                //return null;
             }
             else
             {
