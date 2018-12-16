@@ -22,7 +22,7 @@ namespace MVCDemo.DAL
 
         //public DbSet<StudentCousers> StuCousers { get; set; }
         
-        public DbSet<TUser> TUsers { get; set; }
+        public DbSet<TUser> TUser { get; set; }
 
         public DbSet<TRole> TRoles { get; set; }
 

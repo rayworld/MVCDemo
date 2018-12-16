@@ -10,7 +10,7 @@ namespace MVCDemo.Controllers
         // GET: Account
         public ActionResult Index()
         {
-            return View(db.TUsers.ToList());
+            return View(db.TUser.ToList());
         }
 
         public ActionResult Login()
@@ -23,10 +23,16 @@ namespace MVCDemo.Controllers
         {
             string email = fc["inputEmail3"];
             string password = fc["inputPassword3"];
-            var user11 = db.TUsers.Where(u => u.EMail == email);
-            ViewBag.State = user11.Count();
-
-            return View();
+            var user11 = db.TUser.Where(u => u.EMail == email & u.Password == password);
+            //ViewBag.State = user11.Count();
+            if (user11.Count() > 0)
+            {
+                return View("Index",db.TUser.ToList());
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

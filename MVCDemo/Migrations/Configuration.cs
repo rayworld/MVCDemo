@@ -25,7 +25,7 @@ namespace MVCDemo.Migrations
                 new TUser{Name="admin2",Password="2",EMail="casp@sina.com"},
                 new TUser{Name="admin3",Password="3",EMail="casp@sina.com"}
             };
-            sysuser.ForEach(u => context.TUsers.Add(u));
+            sysuser.ForEach(u => context.TUser.Add(u));
 
             var sysrole = new List<TRole>
             {
