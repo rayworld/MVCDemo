@@ -3,13 +3,13 @@ namespace MVCDemo.Migrations
     using MVCDemo.Areas.Admin.Models;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MVCDemo.DAL.BaseContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "MVCDemo.DAL.BaseContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(MVCDemo.DAL.BaseContext context)
@@ -19,21 +19,55 @@ namespace MVCDemo.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            var sysuser = new List<TUser>
+            var sysusers = new List<TUser>
             {
                 new TUser{Name="admin1",Password="1",EMail="casp@sina.com"},
                 new TUser{Name="admin2",Password="2",EMail="casp@sina.com"},
                 new TUser{Name="admin3",Password="3",EMail="casp@sina.com"}
             };
-            sysuser.ForEach(u => context.TUsers.Add(u));
+            sysusers.ForEach(s => context.TUsers.AddOrUpdate(p => p.Name,s));
+            context.SaveChanges();
 
-            var sysrole = new List<TRole>
+            var sysroles = new List<TRole>
             {
                 new TRole{Name="admin",Desc="admin"},
                 new TRole{Name="user",Desc="User"}
             };
-            sysrole.ForEach(r => context.TRoles.Add(r));
+            sysroles.ForEach(r => context.TRoles.AddOrUpdate(c => c.Name,r));
 
+            context.SaveChanges();
+
+            var userroles = new List<TUserRole>
+            {
+                new TUserRole{
+                    TUserID=sysusers.Single(u => u.Name == "admin1").ID,
+                    TRoleID=sysroles.Single(r => r.Name == "user").ID
+                },
+                new TUserRole{
+                    TUserID=sysusers.Single(u => u.Name == "admin1").ID,
+                    TRoleID=sysroles.Single(r => r.Name == "admin").ID
+                },
+                new TUserRole{
+                    TUserID=sysusers.Single(u => u.Name == "admin2").ID,
+                    TRoleID=sysroles.Single(r => r.Name == "user").ID
+                },
+                new TUserRole{
+                    TUserID=sysusers.Single(u => u.Name == "admin3").ID,
+                    TRoleID=sysroles.Single(r => r.Name == "user").ID
+                }
+            };
+
+            foreach(TUserRole tUserRole in userroles)
+            {
+                var db = context.TUserRoles.Where(t =>
+                t.TUser.ID == tUserRole.TUserID &
+                t.TRole.ID == tUserRole.TRoleID).SingleOrDefault();
+                if (db == null)
+                {
+                    context.TUserRoles.Add(tUserRole);
+                    
+                }
+            }
             context.SaveChanges();
         }
     }

@@ -14,6 +14,6 @@ namespace MVCDemo.Areas.Admin.Models
         [Display(Name = "角色描述")]
         public string Desc { get; set; }
 
-        public virtual ICollection<TUserRole> TUserRole { get; set; }
+        public virtual ICollection<TUserRole> TUserRoles { get; set; }
     }
 }

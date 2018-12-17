@@ -19,6 +19,6 @@ namespace MVCDemo.Areas.Admin.Models
         [Required]
         public string EMail { get; set; }
 
-        public virtual ICollection<TUserRole> TUserRole { get; set; }
+        public virtual ICollection<TUserRole> TUserRoles { get; set; }
     }
 }

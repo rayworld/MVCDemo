@@ -4,9 +4,9 @@
     {
         public int ID { get; set; }
 
-        public int UserID { get; set; }
+        public int TUserID { get; set; }
 
-        public int RoleID { get; set; }
+        public int TRoleID { get; set; }
 
         public virtual TRole TRole { get; set; }
 
