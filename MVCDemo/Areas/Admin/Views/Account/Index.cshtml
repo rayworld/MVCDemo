@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            用户名  @Html.ActionLink("▲", "Index", new { SortOrder = "Name" })@Html.ActionLink("▼", "Index", new { SortOrder = "Name_D" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            密码  @Html.ActionLink("▲", "Index", new { SortOrder = "Password" })@Html.ActionLink("▼", "Index", new { SortOrder = "Password_D" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EMail)
+            邮箱  @Html.ActionLink("▲", "Index", new { SortOrder = "EMail" })@Html.ActionLink("▼", "Index", new { SortOrder = "EMail_D" })
         </th>
         <th></th>
     </tr>

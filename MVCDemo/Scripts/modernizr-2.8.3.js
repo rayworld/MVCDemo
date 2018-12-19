@@ -16,7 +16,7 @@
  * Modernizr has an optional (not included) conditional resource loader
  * called Modernizr.load(), based on Yepnope.js (yepnopejs.com).
  * To get a build that includes Modernizr.load(), as well as choosing
- * which tests to include, go to www.modernizr.com/download/
+ * which tests to include, go to www.modernizr.com_Download/
  *
  * Authors        Faruk Ates, Paul Irish, Alex Sexton
  * Contributors   Ryan Seddon, Ben Alman
@@ -782,7 +782,7 @@ window.Modernizr = (function( window, document, undefined ) {
     // Because we are forced to try/catch this, we'll go aggressive.
 
     // Just FWIW: IE8 Compat mode supports these features completely:
-    //   www.quirksmode.org/dom/html5.html
+    //   www.quirksmode.org_Dom/html5.html
     // But IE8 doesn't support either with local files
 
     tests['localstorage'] = function() {
@@ -822,7 +822,7 @@ window.Modernizr = (function( window, document, undefined ) {
     };
 
     // specifically for SVG inline in HTML, not within XHTML
-    // test page: paulirish.com/demo/inline-svg
+    // test page: paulirish.com_Demo/inline-svg
     tests['inlinesvg'] = function() {
       var div = document.createElement('div');
       div.innerHTML = '<svg/>';
@@ -835,7 +835,7 @@ window.Modernizr = (function( window, document, undefined ) {
     };
 
     // This test is only for clip paths in SVG proper, not clip paths on HTML content
-    // demo: srufaculty.sru.edu/david.dailey/svg/newstuff/clipPath4.svg
+    // demo: srufaculty.sru.edu_David.dailey/svg/newstuff/clipPath4.svg
 
     // However read the comments to dig into applying SVG clippaths to HTML content here:
     //   github.com/Modernizr/Modernizr/issues/213#issuecomment-1149491

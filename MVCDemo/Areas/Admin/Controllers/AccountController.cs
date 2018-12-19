@@ -9,12 +9,59 @@ namespace MVCDemo.Areas.Admin.Controllers
     public class AccountController : Controller
     {
         private BaseContext db = new BaseContext();
+        private string OrderColumn = "";
         // GET: Account
 
         #region List
-        public ActionResult Index()
+        public ActionResult Index(string SortOrder)
         {
-            return View(db.TUsers.ToList());
+            //OrderColumn = string.IsNullOrEmpty(SortOrder) ? "EMail": "";
+            if(string.IsNullOrEmpty(SortOrder))
+            {
+                OrderColumn = "ID";
+            }
+            else if (SortOrder == OrderColumn)
+            {
+                OrderColumn = SortOrder.EndsWith("_D") ? SortOrder.Substring(0, SortOrder.Length - 2) : SortOrder + "_D";
+            }
+            else
+            {
+                OrderColumn = SortOrder;
+            }
+            var users = from u in db.TUsers select u;
+
+            switch(OrderColumn)
+            {
+                case "ID":
+                    users = users.OrderBy(u => u.ID);
+                    break;
+                case "ID_D":
+                    users = users.OrderByDescending(u => u.ID);
+                    break;
+                case "Name":
+                    users = users.OrderBy(u => u.Name);
+                    break;
+                case "Name_D":
+                    users = users.OrderByDescending(u => u.Name);
+                    break;
+                case "Password":
+                    users = users.OrderBy(u => u.Password);
+                    break;
+                case "Password_D":
+                    users = users.OrderByDescending(u => u.Password);
+                    break;
+                case "EMail":
+                    users = users.OrderBy(u => u.EMail);
+                    break;
+                case "EMail_D":
+                    users = users.OrderByDescending(u => u.EMail);
+                    break;
+                default:
+                    users = users.OrderByDescending(u => u.ID); 
+                    break;
+            }
+
+            return View(users.ToList());
         }
         #endregion
 
@@ -94,6 +141,14 @@ namespace MVCDemo.Areas.Admin.Controllers
 
         }
 
+        #endregion
+
+        #region Details
+        public ActionResult Details (int id)
+        {
+            var user = db.TUsers.Find(id);
+            return View(user);
+        }
         #endregion
     }
 }
