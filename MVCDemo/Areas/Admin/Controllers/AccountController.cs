@@ -1,5 +1,6 @@
 ﻿using MVCDemo.Areas.Admin.Models;
 using MVCDemo.DAL;
+using PagedList;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -13,11 +14,19 @@ namespace MVCDemo.Areas.Admin.Controllers
         // GET: Account
 
         #region List
-        public ActionResult Index(string SortOrder,string QueryString)
+        public ActionResult Index(string SortOrder,string QueryString, int? PageIndex)
         {
-
             ViewBag.CurrSortOrder = string.IsNullOrEmpty(SortOrder) ? "ID" : SortOrder;
-            ViewBag.CurrQueryString = QueryString;
+            //ViewBag.CurrPageIndex = PageIndex;
+            if (!string.IsNullOrEmpty(QueryString))
+            {
+                PageIndex = 1;
+                //ViewBag.CurrPageIndex = PageIndex;
+            }
+            else
+            {
+                ViewBag.CurrQueryString = QueryString;
+            }            
 
             var users = from u in db.TUsers select u;
 
@@ -58,7 +67,10 @@ namespace MVCDemo.Areas.Admin.Controllers
                     break;
             }
 
-            return View(users.ToList());
+            //return View(users.ToList());
+            int pageSize = 3;
+            int pageNumber = (PageIndex ?? 1);
+            return View(users.ToPagedList(pageNumber, pageSize));
         }
         #endregion
 
