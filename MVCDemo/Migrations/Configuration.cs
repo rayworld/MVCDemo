@@ -21,11 +21,11 @@ namespace MVCDemo.Migrations
 
             var sysusers = new List<TUser>
             {
-                new TUser{Name="admin1",Password="1",EMail="casp@sina.com"},
-                new TUser{Name="admin2",Password="2",EMail="casp@sina.com"},
-                new TUser{Name="admin3",Password="3",EMail="casp@sina.com"}
+                new TUser{Name="admin1",Password="1",EMail="casp@sina.com", CreateDate=System.DateTime.Now},
+                new TUser{Name="admin2",Password="2",EMail="casp@sina.com", CreateDate=System.DateTime.Now},
+                new TUser{Name="admin3",Password="3",EMail="casp@sina.com", CreateDate=System.DateTime.Now}
             };
-            sysusers.ForEach(s => context.TUsers.AddOrUpdate(p => p.Name,s));
+            sysusers.ForEach(s => context.TUsers.AddOrUpdate(p => p.Name, s));
             context.SaveChanges();
 
             var sysroles = new List<TRole>
@@ -33,7 +33,7 @@ namespace MVCDemo.Migrations
                 new TRole{Name="admin",Desc="admin"},
                 new TRole{Name="user",Desc="User"}
             };
-            sysroles.ForEach(r => context.TRoles.AddOrUpdate(c => c.Name,r));
+            sysroles.ForEach(r => context.TRoles.AddOrUpdate(c => c.Name, r));
 
             context.SaveChanges();
 
@@ -57,7 +57,7 @@ namespace MVCDemo.Migrations
                 }
             };
 
-            foreach(TUserRole tUserRole in userroles)
+            foreach (TUserRole tUserRole in userroles)
             {
                 var db = context.TUserRoles.Where(t =>
                 t.TUser.ID == tUserRole.TUserID &
@@ -65,7 +65,7 @@ namespace MVCDemo.Migrations
                 if (db == null)
                 {
                     context.TUserRoles.Add(tUserRole);
-                    
+
                 }
             }
             context.SaveChanges();

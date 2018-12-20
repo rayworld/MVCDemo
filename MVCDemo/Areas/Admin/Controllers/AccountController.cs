@@ -62,6 +62,12 @@ namespace MVCDemo.Areas.Admin.Controllers
                 case "EMail_D":
                     users = users.OrderByDescending(u => u.EMail);
                     break;
+                case "CreateDate":
+                    users = users.OrderBy(u => u.CreateDate);
+                    break;
+                case "CreateDate_D":
+                    users = users.OrderByDescending(u => u.CreateDate);
+                    break;
                 default:
                     users = users.OrderByDescending(u => u.ID); 
                     break;
