@@ -14,26 +14,26 @@ namespace MVCDemo.Areas.Admin.Controllers
         // GET: Account
 
         #region List
-        public ActionResult Index(string SortOrder,string QueryString, int? PageIndex)
+        public ActionResult Index(string SortOrder,string QueryString1, int? PageIndex)
         {
             ViewBag.CurrSortOrder = string.IsNullOrEmpty(SortOrder) ? "ID" : SortOrder;
             //ViewBag.CurrPageIndex = PageIndex;
-            if (!string.IsNullOrEmpty(QueryString))
+            if (!string.IsNullOrEmpty(QueryString1))
             {
                 PageIndex = 1;
                 //ViewBag.CurrPageIndex = PageIndex;
             }
             else
             {
-                ViewBag.CurrQueryString = QueryString;
+                ViewBag.CurrQueryString = QueryString1;
             }            
 
             var users = from u in db.TUsers select u;
 
-            if(!string.IsNullOrEmpty(QueryString))
+            if(!string.IsNullOrEmpty(QueryString1))
             {
-                users = users.Where(u => u.Name.Contains(QueryString) || 
-                u.EMail.Contains(QueryString));
+                users = users.Where(u => u.Name.Contains(QueryString1) || 
+                u.EMail.Contains(QueryString1));
             }
 
             switch(ViewBag.CurrSortOrder)
