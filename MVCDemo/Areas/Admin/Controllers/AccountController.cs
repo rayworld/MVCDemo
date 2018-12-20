@@ -9,28 +9,25 @@ namespace MVCDemo.Areas.Admin.Controllers
     public class AccountController : Controller
     {
         private BaseContext db = new BaseContext();
-        private string OrderColumn = "";
+
         // GET: Account
 
         #region List
-        public ActionResult Index(string SortOrder)
+        public ActionResult Index(string SortOrder,string QueryString)
         {
-            //OrderColumn = string.IsNullOrEmpty(SortOrder) ? "EMail": "";
-            if(string.IsNullOrEmpty(SortOrder))
-            {
-                OrderColumn = "ID";
-            }
-            else if (SortOrder == OrderColumn)
-            {
-                OrderColumn = SortOrder.EndsWith("_D") ? SortOrder.Substring(0, SortOrder.Length - 2) : SortOrder + "_D";
-            }
-            else
-            {
-                OrderColumn = SortOrder;
-            }
+
+            ViewBag.CurrSortOrder = string.IsNullOrEmpty(SortOrder) ? "ID" : SortOrder;
+            ViewBag.CurrQueryString = QueryString;
+
             var users = from u in db.TUsers select u;
 
-            switch(OrderColumn)
+            if(!string.IsNullOrEmpty(QueryString))
+            {
+                users = users.Where(u => u.Name.Contains(QueryString) || 
+                u.EMail.Contains(QueryString));
+            }
+
+            switch(ViewBag.CurrSortOrder)
             {
                 case "ID":
                     users = users.OrderBy(u => u.ID);

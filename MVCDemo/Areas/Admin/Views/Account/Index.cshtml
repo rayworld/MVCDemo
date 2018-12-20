@@ -5,42 +5,57 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>用户管理</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("新建", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            用户名  @Html.ActionLink("▲", "Index", new { SortOrder = "Name" })@Html.ActionLink("▼", "Index", new { SortOrder = "Name_D" })
-        </th>
-        <th>
-            密码  @Html.ActionLink("▲", "Index", new { SortOrder = "Password" })@Html.ActionLink("▼", "Index", new { SortOrder = "Password_D" })
-        </th>
-        <th>
-            邮箱  @Html.ActionLink("▲", "Index", new { SortOrder = "EMail" })@Html.ActionLink("▼", "Index", new { SortOrder = "EMail_D" })
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMail)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @using (Html.BeginForm())
+    {
+    <p>
+        查询 用户名/邮箱: @Html.TextBox("QueryString")
+        <input type="submit" value="查询" />
+    </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                用户编号  @Html.ActionLink("▲", "Index", new { SortOrder = "ID", QueryString = ViewBag.CurrQueryString })@Html.ActionLink("▼", "Index", new { SortOrder = "ID_D", QueryString = ViewBag.CurrQueryString })
+            </th>
+            <th>
+                用户名  @Html.ActionLink("▲", "Index", new { SortOrder = "Name", QueryString = ViewBag.CurrQueryString })@Html.ActionLink("▼", "Index", new { SortOrder = "Name_D", QueryString = ViewBag.CurrQueryString })
+            </th>
+            <th>
+                密码  @Html.ActionLink("▲", "Index", new { SortOrder = "Password", QueryString = ViewBag.CurrQueryString })@Html.ActionLink("▼", "Index", new { SortOrder = "Password_D", QueryString = ViewBag.CurrQueryString })
+            </th>
+            <th>
+                邮箱  @Html.ActionLink("▲", "Index", new { SortOrder = "EMail", QueryString = ViewBag.CurrQueryString })@Html.ActionLink("▼", "Index", new { SortOrder = "EMail_D", QueryString = ViewBag.CurrQueryString })
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMail)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
