@@ -15,18 +15,15 @@ namespace MVCDemo.DAL
         {
 
         }
-
-        //public DbSet<Students> Students { get; set; }
-
-        //public DbSet<Courses> Courses { get; set; }
-
-        //public DbSet<StudentCousers> StuCousers { get; set; }
         
         public DbSet<TUser> TUsers { get; set; }
 
         public DbSet<TRole> TRoles { get; set; }
 
         public DbSet<TUserRole> TUserRoles { get; set; }
+
+        public DbSet<TDept> TDepts { get; set; }
+
         /// <summary>
         /// 指定单数形式的表名
         /// 默认情况下会生成复数形式的表，如Users

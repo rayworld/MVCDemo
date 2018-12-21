@@ -6,7 +6,6 @@ namespace MVCDemo.Areas.Admin.Controllers
 {
     public class RoleController : Controller
     {
-
         private BaseContext db = new BaseContext();
         // GET: Role
         public ActionResult Index()

@@ -9,7 +9,7 @@ namespace MVCDemo.Areas.Admin.Models
         public int ID { get; set; }
 
         [Display(Name = "用户名称")]
-        [MaxLength(50)]
+        [MaxLength(50,ErrorMessage = "用户名称长度不能超过50个字符")]
         [Required]
         public string Name { get; set; }
 
@@ -24,8 +24,14 @@ namespace MVCDemo.Areas.Admin.Models
         public string EMail { get; set; }
 
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd hh:mm:ss}",ApplyFormatInEditMode =true)]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         public DateTime CreateDate { get; set; }
+
+        [Display(Name = "部门")]
+        public int? TDeptID { get; set; }
+
         public virtual ICollection<TUserRole> TUserRoles { get; set; }
+
+        public virtual TDept TDept { get; set; }
     }
 }

@@ -26,9 +26,11 @@ namespace MVCDemo.Areas.Admin.Controllers
             else
             {
                 ViewBag.CurrQueryString = QueryString1;
-            }            
+            }
 
-            var users = from u in db.TUsers select u;
+            //var users = from u in db.TUsers select u;
+            var users = db.TUsers.Include(u => u.TDept);
+
 
             if(!string.IsNullOrEmpty(QueryString1))
             {
@@ -113,9 +115,13 @@ namespace MVCDemo.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(TUser sysUser)
         {
-            db.TUsers.Add(sysUser);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                db.TUsers.Add(sysUser);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         #endregion
