@@ -3,119 +3,61 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-
-
 <h2>UserRoles</h2>
-
-
-
 <p>
-
     @Html.ActionLink("Create New", "Create")
-
 </p>
-
-
-
 <table class="table table-striped">
-
     <tr>
-
         <th>
-
             UserName
-
         </th>
-
         <th>
-
             Email
-
         </th>
-
         <th>
-
             CreateDate
-
         </th>
-
         <th>
-
             Department
-
         </th>
-
         <th>
-
             Roles
-
         </th>
-
         <th></th>
-
     </tr>
 
     @foreach (var item in Model.TUsers)
-
     {
-
         string selectedRow = "";
-
         if (item.ID == ViewBag.UserID)
-
         {
-
             selectedRow = "success";
-
         }
 
         <tr class="@selectedRow">
-
             <td>
-
                 @Html.DisplayFor(modelItem => item.Name)
-
             </td>
-
             <td>
-
                 @Html.DisplayFor(modelItem => item.EMail)
-
             </td>
-
             <td>
-
                 @Html.DisplayFor(modelItem => item.CreateDate)
-
             </td>
-
             <td>
-
                 @if (item.TDept != null)
-
                 {
-
                     @item.TDept.Name
-
                 }
-
             </td>
-
             <td>
-
                 @{
-
                     foreach (var userRole in item.TUserRoles)
-
                     {
-
                         @userRole.TRole.Name <br />
-
                     }
-
                 }
-
             </td>
             <td>
                 @Html.ActionLink("Select", "Index", new { id = item.ID })
@@ -124,48 +66,25 @@
     }
 </table>
 
-
-
 @if (Model.TRoles != null)
-
 {
-
     <h3>Related Roles</h3>
-
     <table class="table table-striped">
-
         <tr>
-
             <th>RoleName</th>
-
             <th>RoleDesc</th>
-
         </tr>
 
-
-
         @foreach (var item in Model.TRoles)
-
         {
-
             <tr>
-
                 <td>
-
                     @item.Name
-
                 </td>
-
                 <td>
-
                     @item.Desc
-
                 </td>
-
             </tr>
-
         }
-
     </table>
-
 }
