@@ -1,6 +1,7 @@
 ﻿using MVCDemo.Areas.Admin.Models;
 using MVCDemo.DAL;
 using PagedList;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -70,6 +71,12 @@ namespace MVCDemo.Areas.Admin.Controllers
                 case "CreateDate_D":
                     users = users.OrderByDescending(u => u.CreateDate);
                     break;
+                case "DeptName":
+                    users = users.OrderBy(u => u.TDept.Name);
+                    break;
+                case "DeptName_D":
+                    users = users.OrderByDescending(u => u.TDept.Name);
+                    break;
                 default:
                     users = users.OrderByDescending(u => u.ID); 
                     break;
@@ -109,6 +116,20 @@ namespace MVCDemo.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
+            List<SelectListItem> TDeptList = new List<SelectListItem>();
+
+            var tDepts = db.TDepts.Where(u => u.ID > 0);
+            foreach (TDept dept in tDepts)
+            {
+                SelectListItem item = new SelectListItem()
+                {
+                    Value = dept.ID.ToString(),
+                    Text = dept.Name.ToString()
+                };
+                TDeptList.Add(item);
+            };
+            SelectList TDeptID = new SelectList(TDeptList, "Value", "Text");
+            ViewBag.TDeptID = TDeptID;
             return View();
         }
 

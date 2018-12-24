@@ -23,6 +23,7 @@ namespace MVCDemo.Areas.Admin.Models
         [Required]
         public string EMail { get; set; }
 
+        [Display(Name = "创建时间")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         public DateTime CreateDate { get; set; }

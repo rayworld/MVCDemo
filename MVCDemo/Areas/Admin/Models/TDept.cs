@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVCDemo.Areas.Admin.Models
 {
@@ -6,6 +7,7 @@ namespace MVCDemo.Areas.Admin.Models
     {
         public int ID { get; set; }
 
+        [Display(Name = "部门名称")]
         public string Name { get; set; }
 
         public string Desc { get; set; }
