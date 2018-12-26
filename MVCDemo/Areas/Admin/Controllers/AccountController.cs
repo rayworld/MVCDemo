@@ -30,7 +30,7 @@ namespace MVCDemo.Areas.Admin.Controllers
             }
 
             //var users = from u in db.TUsers select u;
-            var users = db.TUsers.Include(u => u.TDept);
+            var users = db.Users.Include(u => u.Dept);
 
 
             if(!string.IsNullOrEmpty(QueryString1))
@@ -72,10 +72,10 @@ namespace MVCDemo.Areas.Admin.Controllers
                     users = users.OrderByDescending(u => u.CreateDate);
                     break;
                 case "DeptName":
-                    users = users.OrderBy(u => u.TDept.Name);
+                    //users = users.OrderBy(u => u.SysTitle.Name);
                     break;
                 case "DeptName_D":
-                    users = users.OrderByDescending(u => u.TDept.Name);
+                    //users = users.OrderByDescending(u => u.SysTitle.Name);
                     break;
                 default:
                     users = users.OrderByDescending(u => u.ID); 
@@ -100,7 +100,7 @@ namespace MVCDemo.Areas.Admin.Controllers
         {
             string email = fc["inputEmail3"];
             string password = fc["inputPassword3"];
-            var user11 = db.TUsers.Where(u => u.EMail == email & u.Password == password);
+            var user11 = db.Users.Where(u => u.EMail == email & u.Password == password);
             if (user11.Count() > 0)
             {
                 return RedirectToAction("Index", "Account");
@@ -116,29 +116,17 @@ namespace MVCDemo.Areas.Admin.Controllers
 
         public ActionResult Create()
         {
-            List<SelectListItem> TDeptList = new List<SelectListItem>();
-
-            var tDepts = db.TDepts.Where(u => u.ID > 0);
-            foreach (TDept dept in tDepts)
-            {
-                SelectListItem item = new SelectListItem()
-                {
-                    Value = dept.ID.ToString(),
-                    Text = dept.Name.ToString()
-                };
-                TDeptList.Add(item);
-            };
-            SelectList TDeptID = new SelectList(TDeptList, "Value", "Text");
-            ViewBag.TDeptID = TDeptID;
+            var Depts1 = from u in db.Depts select u;
+            ViewBag.TitleID = BindSelect(Depts1);
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(TUser sysUser)
+        public ActionResult Create(UserEntity sysUser)
         {
             if (ModelState.IsValid)
             {
-                db.TUsers.Add(sysUser);
+                db.Users.Add(sysUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -151,14 +139,14 @@ namespace MVCDemo.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            TUser tUser = db.TUsers.Find(id);
-            return View(tUser);
+            UserEntity sysUser = db.Users.Find(id);
+            return View(sysUser);
         }
 
         [HttpPost]
-        public ActionResult Edit(TUser tUser)
+        public ActionResult Edit(UserEntity sysUser)
         {
-            db.Entry(tUser).State = EntityState.Modified;
+            db.Entry(sysUser).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -169,15 +157,15 @@ namespace MVCDemo.Areas.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            TUser tUser = db.TUsers.Find(id);
-            return View(tUser);
+            UserEntity sysUser = db.Users.Find(id);
+            return View(sysUser);
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            TUser sysUser = db.TUsers.Find(id);
-            db.TUsers.Remove(sysUser);
+            UserEntity sysUser = db.Users.Find(id);
+            db.Users.Remove(sysUser);
             db.SaveChanges();
             return RedirectToAction("Index");
 
@@ -188,9 +176,39 @@ namespace MVCDemo.Areas.Admin.Controllers
         #region Details
         public ActionResult Details (int id)
         {
-            var user = db.TUsers.Find(id);
+            var user = db.Users.Find(id);
             return View(user);
         }
         #endregion
+
+        public ActionResult Tree()
+        {
+            var list = (from a in db.Depts
+                        select new {
+                            id = a.ID,
+                            pid = a.ParantID,
+                            name = a.Name,
+                            LinkURL = ""
+                        }).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        private SelectList BindSelect(IQueryable<DeptEntity> Depts1)
+        {
+            List<SelectListItem> listDepts = new List<SelectListItem>();
+
+            foreach (DeptEntity dept in Depts1)
+            {
+                SelectListItem itemDept = new SelectListItem()
+                {
+                    Value = dept.ID.ToString(),
+                    Text = dept.Name.ToString()
+                };
+                listDepts.Add(itemDept);
+            };
+
+            SelectList DepartmentID = new SelectList(listDepts, "Value", "Text");
+            return DepartmentID;
+        }
     }
 }

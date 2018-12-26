@@ -10,7 +10,7 @@ namespace MVCDemo.Areas.Admin.Controllers
         // GET: Role
         public ActionResult Index()
         {
-            return View(db.TRoles.ToList());
+            return View(db.Roles.ToList());
         }
     }
 }

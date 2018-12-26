@@ -16,15 +16,15 @@ namespace MVCDemo.Areas.Admin.Controllers
         {
             var viewModel = new UserRoleIndexData
             {
-                TUsers = db.TUsers.Include(u => u.TDept).Include(u => u.TUserRoles.Select(ur => ur.TRole)).OrderBy(u => u.Name)
+                VMUsers = db.Users.Include(u => u.Dept).Include(u => u.UserRoles.Select(ur => ur.Role)).OrderBy(u => u.Name)
             };
 
             if (id != null)
             {
                 ViewBag.UserID = id.Value;
-                viewModel.TUserRoles = viewModel.TUsers.Where(u => u.ID == id.Value).Single().TUserRoles;
-                viewModel.TRoles = (viewModel.TUserRoles.Where(
-                ur => ur.TUserID == id.Value)).Select(ur => ur.TRole);
+                viewModel.VMUserRoles = viewModel.VMUsers.Where(u => u.ID == id.Value).Single().UserRoles;
+                viewModel.VMRoles = (viewModel.VMUserRoles.Where(
+                ur => ur.UserID == id.Value)).Select(ur => ur.Role);
             }
             return View(viewModel);
 

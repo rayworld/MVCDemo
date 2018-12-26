@@ -6,24 +6,28 @@ namespace MVCDemo.DAL
 {
     public class BaseContext : DbContext
     {
-
         /// <summary>
         /// 构造函数中的 base("AccountContext") 。
         /// 默认情况下和类名一样，即AccountContext，我们显式的给他指定出来。
         /// </summary>
-        public BaseContext() : base("BaseContext")
-        {
-
-        }
+        public BaseContext() : base("baseContext") { }
         
-        public DbSet<TUser> TUsers { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
-        public DbSet<TRole> TRoles { get; set; }
+        public DbSet<RoleEntity> Roles { get; set; }
 
-        public DbSet<TUserRole> TUserRoles { get; set; }
+        public DbSet<UserRoleEntity>  UserRoles { get; set; }
 
-        public DbSet<TDept> TDepts { get; set; }
+        public DbSet<DeptEntity> Depts { get; set; }
 
+        public DbSet<RolePremissionEntity> RolePremissions { get; set; }
+
+        public DbSet<PremissionEntity> Premissions { get; set; }
+
+        public DbSet<ModuleEntity> Modules { get; set; }
+
+        public DbSet<ModulePremissionEntity> ModulePremissions { get; set; }
+        
         /// <summary>
         /// 指定单数形式的表名
         /// 默认情况下会生成复数形式的表，如Users

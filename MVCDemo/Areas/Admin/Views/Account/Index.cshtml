@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<MVCDemo.Areas.Admin.Models.TUser>
+﻿@model PagedList.IPagedList<MVCDemo.Areas.Admin.Models.UserEntity>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 
@@ -62,7 +62,7 @@
             @Html.DisplayFor(modelItem => item.CreateDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TDept.Name)
+            @Html.DisplayFor(modelItem => item.SysDept.Name)
         </td>
     </tr>
     }

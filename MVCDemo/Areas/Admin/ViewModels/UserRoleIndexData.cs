@@ -5,10 +5,10 @@ namespace MVCDemo.Areas.Admin.ViewModels
 {
     public class UserRoleIndexData
     {
-        public IEnumerable<TUser> TUsers { get; set; }
+        public IEnumerable<UserEntity>VMUsers { get; set; }
 
-        public IEnumerable<TRole> TRoles { get; set; }
+        public IEnumerable<RoleEntity> VMRoles { get; set; }
 
-        public IEnumerable<TUserRole> TUserRoles { get; set; }
+        public IEnumerable<UserRoleEntity> VMUserRoles { get; set; }
     }
 }

@@ -19,55 +19,55 @@ namespace MVCDemo.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            var sysusers = new List<TUser>
+            var sysusers = new List<UserEntity>
             {
-                new TUser{Name="admin1",Password="1",EMail="casp@sina.com", CreateDate=System.DateTime.Now},
-                new TUser{Name="admin2",Password="2",EMail="casp@sina.com", CreateDate=System.DateTime.Now},
-                new TUser{Name="admin3",Password="3",EMail="casp@sina.com", CreateDate=System.DateTime.Now}
+                new UserEntity{Name="admin1",Password="1",EMail="casp@sina.com", CreateDate=System.DateTime.Now},
+                new UserEntity{Name="admin2",Password="2",EMail="casp@sina.com", CreateDate=System.DateTime.Now},
+                new UserEntity{Name="admin3",Password="3",EMail="casp@sina.com", CreateDate=System.DateTime.Now}
             };
-            sysusers.ForEach(s => context.TUsers.AddOrUpdate(p => p.Name, s));
+            sysusers.ForEach(s => context.Users.AddOrUpdate(p => p.Name, s));
             context.SaveChanges();
 
-            var sysroles = new List<TRole>
+            var sysroles = new List<RoleEntity>
             {
-                new TRole{Name="admin",Desc="admin"},
-                new TRole{Name="user",Desc="User"}
+                new RoleEntity{Name="admin",Desc="admin"},
+                new RoleEntity{Name="user",Desc="User"}
             };
-            sysroles.ForEach(r => context.TRoles.AddOrUpdate(c => c.Name, r));
+            sysroles.ForEach(r => context.Roles.AddOrUpdate(c => c.Name, r));
 
             context.SaveChanges();
 
-            var userroles = new List<TUserRole>
-            {
-                new TUserRole{
-                    TUserID=sysusers.Single(u => u.Name == "admin1").ID,
-                    TRoleID=sysroles.Single(r => r.Name == "user").ID
-                },
-                new TUserRole{
-                    TUserID=sysusers.Single(u => u.Name == "admin1").ID,
-                    TRoleID=sysroles.Single(r => r.Name == "admin").ID
-                },
-                new TUserRole{
-                    TUserID=sysusers.Single(u => u.Name == "admin2").ID,
-                    TRoleID=sysroles.Single(r => r.Name == "user").ID
-                },
-                new TUserRole{
-                    TUserID=sysusers.Single(u => u.Name == "admin3").ID,
-                    TRoleID=sysroles.Single(r => r.Name == "user").ID
-                }
-            };
+            //var userroles = new List<UserRoleEntity>
+            //{
+            //    new UserRoleEntity{
+            //        UserID=sysusers.Single(u => u.Name == "admin1").ID,
+            //        RoleID=sysroles.Single(r => r.Name == "user").ID
+            //    },
+            //    new UserRoleEntity{
+            //        UserID=sysusers.Single(u => u.Name == "admin1").ID,
+            //        RoleID=sysroles.Single(r => r.Name == "admin").ID
+            //    },
+            //    new UserRoleEntity{
+            //        UserID=sysusers.Single(u => u.Name == "admin2").ID,
+            //        RoleID=sysroles.Single(r => r.Name == "user").ID
+            //    },
+            //    new UserRoleEntity{
+            //        UserID=sysusers.Single(u => u.Name == "admin3").ID,
+            //        RoleID=sysroles.Single(r => r.Name == "user").ID
+            //    }
+            //};
 
-            foreach (TUserRole tUserRole in userroles)
-            {
-                var db = context.TUserRoles.Where(t =>
-                t.TUser.ID == tUserRole.TUserID &
-                t.TRole.ID == tUserRole.TRoleID).SingleOrDefault();
-                if (db == null)
-                {
-                    context.TUserRoles.Add(tUserRole);
+            //foreach (UserRoleEntity tUserRole in userroles)
+            //{
+            //    var db = context.UserRoles.Where(t =>
+            //    t.User.ID == tUserRole.UserID &
+            //    t.Role.ID == tUserRole.RoleID).SingleOrDefault();
+            //    if (db == null)
+            //    {
+            //        context.UserRoles.Add(tUserRole);
 
-                }
-            }
+            //    }
+            //}
             context.SaveChanges();
         }
     }
