@@ -18,24 +18,52 @@ namespace MVCDemo.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
-
-            var sysusers = new List<UserEntity>
+            var sysdepts = new List<DeptEntity>
             {
-                new UserEntity{Name="admin1",Password="1",EMail="casp@sina.com", CreateDate=System.DateTime.Now},
-                new UserEntity{Name="admin2",Password="2",EMail="casp@sina.com", CreateDate=System.DateTime.Now},
-                new UserEntity{Name="admin3",Password="3",EMail="casp@sina.com", CreateDate=System.DateTime.Now}
+                new DeptEntity{Name = "总公司", Desc = "总公司", SortOrder = 0, ParantID = 0 }
+                //new DeptEntity{Name = "市场部", Desc = "市场部", SortOrder = 1, ParantID = 0 },
+                //new DeptEntity{Name = "技术部", Desc = "技术部", SortOrder = 2, ParantID = 0 },
+                //new DeptEntity{Name = "销售部", Desc = "销售部", SortOrder = 3, ParantID = 0 }
             };
-            sysusers.ForEach(s => context.Users.AddOrUpdate(p => p.Name, s));
+
+            sysdepts.ForEach(d => context.Depts.AddOrUpdate(p => p.Name, d));
+                       
             context.SaveChanges();
 
-            var sysroles = new List<RoleEntity>
+            var sysdepts1 = new List<DeptEntity>
             {
-                new RoleEntity{Name="admin",Desc="admin"},
-                new RoleEntity{Name="user",Desc="User"}
+                new DeptEntity{Name = "市场部", Desc = "市场部", SortOrder = 1, ParantID = context.Depts.Single(e => e.Name == "总公司").ID },
+                new DeptEntity{Name = "技术部", Desc = "技术部", SortOrder = 2, ParantID = context.Depts.Single(e => e.Name == "总公司").ID },
+                new DeptEntity{Name = "销售部", Desc = "销售部", SortOrder = 3, ParantID = context.Depts.Single(e => e.Name == "总公司").ID }
             };
-            sysroles.ForEach(r => context.Roles.AddOrUpdate(c => c.Name, r));
+
+            sysdepts1.ForEach(d => context.Depts.AddOrUpdate(p => p.Name, d));
 
             context.SaveChanges();
+            
+            //var sysusers = new List<UserEntity>
+            //{
+            //    new UserEntity { Name = "admin1", Password = "1", EMail = "casp1@sina.com", CreateDate = System.DateTime.Now },
+            //    new UserEntity { Name = "admin2", Password = "2", EMail = "casp2@sina.com", CreateDate = System.DateTime.Now },
+            //    new UserEntity { Name = "admin3", Password = "3", EMail = "casp3@sina.com", CreateDate = System.DateTime.Now },
+            //    new UserEntity { Name = "admin4", Password = "4", EMail = "casp4@sina.com", CreateDate = System.DateTime.Now },
+            //    new UserEntity { Name = "admin5", Password = "5", EMail = "casp5@sina.com", CreateDate = System.DateTime.Now },
+            //    new UserEntity { Name = "admin6", Password = "6", EMail = "casp6@sina.com", CreateDate = System.DateTime.Now }
+            //    new UserEntity { Name = "admin7", Password = "7", EMail = "casp7@sina.com", CreateDate = System.DateTime.Now },
+            //    new UserEntity { Name = "admin8", Password = "8", EMail = "casp8@sina.com", CreateDate = System.DateTime.Now },
+            //    new UserEntity { Name = "admin9", Password = "9", EMail = "casp9@sina.com", CreateDate = System.DateTime.Now }
+            //};
+            //sysusers.ForEach(s => context.Users.AddOrUpdate(p => p.Name, s));
+            ////context.SaveChanges();
+
+            //var sysroles = new List<RoleEntity>
+            //{
+            //    new RoleEntity{Name="admin",Desc="admin"},
+            //    new RoleEntity{Name="user",Desc="User"}
+            //};
+            //sysroles.ForEach(r => context.Roles.AddOrUpdate(c => c.Name, r));
+
+            ////context.SaveChanges();
 
             //var userroles = new List<UserRoleEntity>
             //{
@@ -68,7 +96,7 @@ namespace MVCDemo.Migrations
 
             //    }
             //}
-            context.SaveChanges();
+            //context.SaveChanges();
         }
     }
 }

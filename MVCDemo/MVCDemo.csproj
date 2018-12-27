@@ -150,14 +150,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812261348130_sdfw29.cs" />
-    <Compile Include="Migrations\201812261348130_sdfw29.Designer.cs">
-      <DependentUpon>201812261348130_sdfw29.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812261409396_sdfw21.cs" />
-    <Compile Include="Migrations\201812261409396_sdfw21.Designer.cs">
-      <DependentUpon>201812261409396_sdfw21.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Areas\Admin\Models\UserRoleEntity.cs" />
     <Compile Include="Areas\Admin\Models\RoleEntity.cs" />
@@ -256,14 +248,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812261348130_sdfw29.resx">
-      <DependentUpon>201812261348130_sdfw29.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261409396_sdfw21.resx">
-      <DependentUpon>201812261409396_sdfw21.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
