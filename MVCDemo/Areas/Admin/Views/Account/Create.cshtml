@@ -47,10 +47,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SysDept.Name, "所属部门", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Dept.Name, "所属部门", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
             @Html.DropDownList("DeptID", ViewBag.DeptID as SelectList, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TitleID, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.DeptID, "", new { @class = "text-danger" })
             </div>
         </div>
 

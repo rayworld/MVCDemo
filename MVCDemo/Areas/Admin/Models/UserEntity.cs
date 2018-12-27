@@ -31,7 +31,7 @@ namespace MVCDemo.Areas.Admin.Models
         public DateTime CreateDate { get; set; }
         
         [Display(Name = "部门")]
-        public int? TitleID { get; set; }
+        public int? DeptID { get; set; }
 
         public virtual ICollection<UserRoleEntity> UserRoles { get; set; }
 

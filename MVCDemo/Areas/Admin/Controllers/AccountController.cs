@@ -117,7 +117,7 @@ namespace MVCDemo.Areas.Admin.Controllers
         public ActionResult Create()
         {
             var Depts1 = from u in db.Depts select u;
-            ViewBag.TitleID = BindSelect(Depts1);
+            ViewBag.DeptID = BindSelect(Depts1);
             return View();
         }
 
