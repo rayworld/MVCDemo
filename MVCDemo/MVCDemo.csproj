@@ -137,7 +137,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\UserRoleController.cs" />
-    <Compile Include="Areas\Admin\Models\RolePremissionEntity.cs" />
+    <Compile Include="Areas\Admin\Models\RoleModulePremissionEntity.cs" />
     <Compile Include="Areas\Admin\Models\ModulePremissionEntity.cs" />
     <Compile Include="Areas\Admin\Models\ModuleEntity.cs" />
     <Compile Include="Areas\Admin\Models\PremissionEntity.cs" />

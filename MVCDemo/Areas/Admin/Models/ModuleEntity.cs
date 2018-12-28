@@ -16,7 +16,8 @@ namespace MVCDemo.Areas.Admin.Models
 
         [Display(Name = "模块描述")]
         [MaxLength(50, ErrorMessage = "模块描述超长")]
-        public string ModuleDesc { get; set; }
+        [Column(name: "ModuleDesc")]
+        public string Desc { get; set; }
 
         [Display(Name = "上级节点")]
         public int ParentID { get; set; }

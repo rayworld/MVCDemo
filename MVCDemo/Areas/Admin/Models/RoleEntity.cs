@@ -22,6 +22,6 @@ namespace MVCDemo.Areas.Admin.Models
 
         public virtual ICollection<UserRoleEntity> SysUserRoles { get; set; }
 
-        public virtual ICollection<PremissionEntity> Premissions { get; set; }
+        public virtual ICollection<RoleModulePremissionEntity> RoleModulePremissions { get; set; }
     }
 }

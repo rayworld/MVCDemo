@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVCDemo.Areas.Admin.Models
 {
@@ -14,5 +15,8 @@ namespace MVCDemo.Areas.Admin.Models
         public virtual ModuleEntity Module { get; set; }
 
         public virtual PremissionEntity Premission { get; set; }
+
+        public virtual ICollection<RoleModulePremissionEntity> RoleModulePremissions { get; set; }
+
     }
 }

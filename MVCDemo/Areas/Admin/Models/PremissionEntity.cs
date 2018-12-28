@@ -14,9 +14,8 @@ namespace MVCDemo.Areas.Admin.Models
         public string Name { get; set; }
 
         [Display(Name = "权限描述")]
-        public string PremissionDesc { get; set; }
-
-        public virtual ICollection<ModuleEntity> Modules { get; set; }
+        [Column(name: "PremissionDesc")]
+        public string Desc { get; set; }
 
         public virtual ICollection<ModulePremissionEntity> ModulePremissions { get; set; }
 

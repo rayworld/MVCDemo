@@ -20,7 +20,7 @@ namespace MVCDemo.DAL
 
         public DbSet<DeptEntity> Depts { get; set; }
 
-        public DbSet<RolePremissionEntity> RolePremissions { get; set; }
+        public DbSet<RoleModulePremissionEntity> RoleModulePremissions { get; set; }
 
         public DbSet<PremissionEntity> Premissions { get; set; }
 
