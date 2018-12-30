@@ -27,7 +27,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model.TUsers)
+    @foreach (var item in Model.VMUsers)
     {
         string selectedRow = "";
         if (item.ID == ViewBag.UserID)
@@ -46,16 +46,16 @@
                 @Html.DisplayFor(modelItem => item.CreateDate)
             </td>
             <td>
-                @if (item.TDept != null)
+                @if (item.Dept != null)
                 {
-                    @item.TDept.Name
+                    @item.Dept.Name
                 }
             </td>
             <td>
                 @{
-                    foreach (var userRole in item.TUserRoles)
+                    foreach (var userRole in item.UserRoles)
                     {
-                        @userRole.TRole.Name <br />
+                        @userRole.Role.Name <br />
                     }
                 }
             </td>
@@ -66,7 +66,7 @@
     }
 </table>
 
-@if (Model.TRoles != null)
+@if (Model.VMRoles != null)
 {
     <h3>Related Roles</h3>
     <table class="table table-striped">
@@ -75,7 +75,7 @@
             <th>RoleDesc</th>
         </tr>
 
-        @foreach (var item in Model.TRoles)
+        @foreach (var item in Model.VMRoles)
         {
             <tr>
                 <td>

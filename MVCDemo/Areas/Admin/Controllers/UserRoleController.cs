@@ -1,8 +1,8 @@
 ﻿using MVCDemo.Areas.Admin.ViewModels;
 using MVCDemo.DAL;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace MVCDemo.Areas.Admin.Controllers
 {

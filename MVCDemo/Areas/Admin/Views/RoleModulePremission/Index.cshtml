@@ -1,0 +1,42 @@
+﻿@model MVCDemo.Areas.Admin.ViewModels.RoleModulePremissionIndexData
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>角色权限分配</h2>
+<hr />
+<table class="table table-striped">
+    <tr>
+        <th>
+            角色编号
+        </th>
+        <th>
+            角色名称
+        </th>
+        <th>
+            权限编号
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.VMRoles)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @foreach (var rmp in item.RoleModulePremissions)
+            {
+                @rmp.ModulePremission.ID @Html.ActionLink("选择", "Index", new { ID = rmp.ModulePremission.ID }) <br />
+            }
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    }
+</table>

@@ -136,12 +136,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ModuleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ModulePremissionController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleModulePremissionController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserRoleController.cs" />
     <Compile Include="Areas\Admin\Models\RoleModulePremissionEntity.cs" />
     <Compile Include="Areas\Admin\Models\ModulePremissionEntity.cs" />
     <Compile Include="Areas\Admin\Models\ModuleEntity.cs" />
     <Compile Include="Areas\Admin\Models\PremissionEntity.cs" />
     <Compile Include="Areas\Admin\Models\DeptEntity.cs" />
+    <Compile Include="Areas\Admin\ViewModels\RoleModulePremissionIndexData.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ModulePremisssionIndexData.cs" />
     <Compile Include="Areas\Admin\ViewModels\UserRoleIndexData.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
@@ -203,6 +208,10 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Module\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Module\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ModulePremission\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RoleModulePremission\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -234,7 +243,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>

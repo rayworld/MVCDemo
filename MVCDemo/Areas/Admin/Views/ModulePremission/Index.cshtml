@@ -1,0 +1,40 @@
+﻿@model MVCDemo.Areas.Admin.ViewModels.ModulePremissionIndexData
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<table class="table table-striped">
+    <tr>
+        <th>
+            INDEX
+        </th>
+        <th>
+            Module
+        </th>
+        <th>
+            Premission
+        </th>
+    </tr>
+
+    @foreach (var item in Model.VMModules)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @{
+                    foreach (var modulePremissions in item.ModulePremissions)
+                    {
+                        @modulePremissions.Premission.Name;
+                    }
+                }
+            </td>
+        </tr>
+    }
+</table>
